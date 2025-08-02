@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mood-Based Keyboard Destroyer</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #fff;
+      font-family: 'Courier New', monospace;
+      text-align: center;
+      padding: 40px;
+    }
+
+    video {
+      border: 4px dashed #888;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    textarea {
+      width: 80%;
+      height: 150px;
+      font-size: 18px;
+      margin-top: 20px;
+      padding: 10px;
+      border-radius: 10px;
+      border: 2px solid #444;
+      background-color: #1e1e1e;
+      color: white;
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 16px;
+      margin-top: 15px;
+      background-color: #444;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    #moodDisplay {
+      margin-top: 15px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🤪 Mood-Based Keyboard Destroyer</h1>
+  <p>Let your fake mood ruin your real typing experience.</p>
+
+  <video id="webcam" width="320" height="240" autoplay playsinline></video><br>
+  <button onclick="detectMood()">Detect Mood</button>
+  <div id="moodDisplay"></div>
+
+  <textarea id="cursedInput" placeholder="Type here at your own risk..."></textarea>
+
+  <script>
+    const video = document.getElementById("webcam");
+    const moodDisplay = document.getElementById("moodDisplay");
+    const cursedInput = document.getElementById("cursedInput");
+
+    // Start webcam
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(stream => {
+        video.srcObject = stream;
+      })
+      .catch(err => {
+        moodDisplay.innerText = "🚫 Webcam not working!";
+      });
+
+    // Fake mood options
+    const moods = [
+      { mood: "😐 Neutral", effect: "swapE" },
+      { mood: "😠 Angry", effect: "allCapsWithEmojis" },
+      { mood: "😭 Sad", effect: "deleteEveryThird" },
+      { mood: "😎 Cool", effect: "replaceAllWithBro" },
+      { mood: "🤡 Clown", effect: "reverseWords" }
+    ];
+
+    let currentEffect = null;
+
+    function detectMood() {
+      const randomMood = moods[Math.floor(Math.random() * moods.length)];
+      moodDisplay.innerText = `Mood Detected: ${randomMood.mood}`;
+      currentEffect = randomMood.effect;
+      cursedInput.value = ""; // clear input on new mood
+    }
+
+    cursedInput.addEventListener("input", function () {
+      const value = cursedInput.value;
+      if (!currentEffect) return;
+
+      let newValue = value;
+
+      switch (currentEffect) {
+        case "swapE":
+          newValue = value.replace(/e/gi, "3");
+          break;
+        case "allCapsWithEmojis":
+          newValue = value.toUpperCase().replace(/ /g, " 😤 ");
+          break;
+        case "deleteEveryThird":
+          newValue = value.split("").filter((_, i) => (i + 1) % 3 !== 0).join("");
+          break;
+        case "replaceAllWithBro":
+          newValue = "bro ".repeat(Math.ceil(value.length / 4)).trim();
+          break;
+        case "reverseWords":
+          newValue = value.split(" ").map(word => word.split("").reverse().join("")).join(" ");
+          break;
+      }
+
+      cursedInput.value = newValue;
+    });
+  </script>
+
+</body>
+</html>

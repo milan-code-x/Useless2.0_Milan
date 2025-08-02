@@ -1,20 +1,19 @@
 <img width="3188" height="1202" alt="frame (3)" src="https://github.com/user-attachments/assets/517ad8e9-ad22-457d-9538-a9e62d137cd7" />
 
 
-# [Project Name] 🎯
+# emo keyboard 🎯
 
 
 ## Basic Details
-### Team Name: [Name]
+### Team Name: leviathan
 
 
 ### Team Members
-- Team Lead: [Name] - [College]
-- Member 2: [Name] - [College]
-- Member 3: [Name] - [College]
+- Team Lead: Milan Ignatious - AISAT
 
 ### Project Description
-[2-3 lines about what your project does]
+
+This is virtual keyboard, first it scan your face emotion and generate what all things you type on that keyboard on such emotion
 
 ### The Problem (that doesn't exist)
 [What ridiculous problem are you solving?]
@@ -25,14 +24,14 @@
 ## Technical Details
 ### Technologies/Components Used
 For Software:
-- [Languages used]
+- HTML
 - [Frameworks used]
 - [Libraries used]
-- [Tools used]
+- vs code
 
 For Hardware:
-- [List main components]
-- [List specifications]
+- laptop
+- wifi
 - [List tools required]
 
 ### Implementation
